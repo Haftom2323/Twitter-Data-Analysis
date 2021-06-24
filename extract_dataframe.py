@@ -52,10 +52,10 @@ class TweetDfExtractor:
             polarity += [t_blob.polarity]
             subjectivity += [t_blob.subjectivity]
         return polarity, subjectivity
-        
+
     def find_created_time(self)->list:
-       pass
-        #return created_at
+        created_at = [date['created_at'] for date in self.tweets_list]
+        return created_at
 
     def find_source(self)->list:
         #source = 
