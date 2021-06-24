@@ -89,27 +89,32 @@ class TweetDfExtractor:
         return total_favourite
     
     def find_retweet_count(self)->list:
-        #retweet_count =
-        pass 
+        total_retweet = []
+        for tweet in self.tweets_list:
+            if 'retweeted_status' in tweet:
+                total_retweet += [tweet['retweeted_status']['retweet_count']]
+            else:
+                total_retweet += [tweet['retweet_count']]
+        return total_retweet 
 
     def find_hashtags(self)->list:
-        #hashtags =
-        pass
+        hashtags =[hashtag['entities']['hashtags'] for hashtag in self.tweets_list]
+        return hashtags
     def find_mentions(self)->list:
-        #mentions =
-        pass 
+        mentions = [mention['entities']['user_mentions'] for mention in self.tweets_list]
+        return mentions
 
     def find_location(self)->list:
-        try:
-            location = self.tweets_list['user']['location']
-        except TypeError:
-            location = ''
-        
-        return location
-
+        locations = []
+        for locate in self.tweets_list:
+            try:
+                location = locate['user']['location']
+            except TypeError:
+                location = ''
+            locations += [location]
+        return locations
     
-        
-        
+
     def get_tweet_df(self, save=False)->pd.DataFrame:
         """required column to be generated you should be creative and add more features"""
         
