@@ -65,13 +65,12 @@ class TweetDfExtractor:
         screen_name = [s_name['user']['screen_name'] for s_name in self.tweets_list]
         return screen_name
     def find_followers_count(self)->list:
-        #followers_count = 
-        pass
+        followers_count = [follower['user']['followers_count'] for follower in self.tweets_list]
+        return followers_count
 
     def find_friends_count(self)->list:
-        #friends_count =
-        pass 
-
+        friends_count = [friend['user']['friends_count'] for friend in self.tweets_list]
+        return friends_count 
     def is_sensitive(self)->list:
         try:
             is_sensitive = [x['possibly_sensitive'] for x in self.tweets_list]
